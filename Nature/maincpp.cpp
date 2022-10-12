@@ -9,21 +9,18 @@ using namespace std;
 
 
 int main() {
-	srand(time(NULL));
-	int fox_size = 5, rabbit_size = 5;
 
-	Environment env (fox_size, rabbit_size,0);
+	srand(time(NULL)); 
+	int fox_size, rabbit_size, grass;
+	cout << "Enter foxes (5 max): " << endl;
+	cin >> fox_size;
+	cout << "Enter rabbits: " << endl;
+	cin >> rabbit_size;
+	cout << "Enter grass:" << endl;
+	cin >> grass;
+	Environment env (fox_size, rabbit_size,grass);
 
-	
-
-	env.Print();
-
-	
 	env.Scene();
-	
-
-	env.Print();
-
 
 
 	return 0;
