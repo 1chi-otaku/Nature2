@@ -27,6 +27,16 @@ void Environment::Print() {
 	cout << endl << endl;
 }
 
+Environment::Environment(int foxsize, int rabbitsize, int grasss)
+{
+	fox_size = foxsize;
+	if (fox_size > 5)fox_size = 5;
+	rabbit_size = rabbitsize;
+	foxptr = new Fox[fox_size];
+	rabbitptr = new Rabbit[rabbit_size];
+	grass = grasss;
+}
+
 
 void Environment::Scene()
 {
