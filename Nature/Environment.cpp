@@ -70,6 +70,8 @@ void Environment::Scene()
 		cout << "Unfortunately, " << dead_rabbits << " rabbit(s) gone to another world because of longevity .." << endl;
 	if (dead_foxes > 0 || dead_rabbits > 0)
 		cout << "After that, there are " << fox_size << " fox(es), " << rabbit_size << " rabbit(s) and " << grass << " grass..." << endl;
+
+
 	
 
 
@@ -77,7 +79,6 @@ void Environment::Scene()
 	cout << "\n\n\n\n";
 }
 void Environment::DelFox(int index) {
-
 	if (foxptr == nullptr)return;
 	if (fox_size == 1) {
 		fox_size = 0;
@@ -85,23 +86,28 @@ void Environment::DelFox(int index) {
 		foxptr = nullptr;
 		return;
 	}
-
 	Fox* temp = new Fox[fox_size - 1];
-	for (int i = 0, j = 0; j < fox_size; i++, j++)
+
+	for (int i = 0; i < index; i++)
 	{
-		if (i == index && j != fox_size) {
-			j++;
-		}
-
-		temp[i].SetAge(foxptr[j].GetAge());
+		temp[i].SetAge(foxptr[i].GetAge());
 		temp[i].SetMaxAge(foxptr[i].GetMaxAge());
-
 	}
-	delete[]foxptr;
+
+	for (int i = index; i < fox_size-1; ++i)
+	{
+		if (index == fox_size) {
+			temp[i].SetAge(foxptr[i].GetAge());
+			temp[i].SetMaxAge(foxptr[i].GetMaxAge());
+		}
+		temp[i].SetAge(foxptr[i + 1].GetAge());
+		temp[i].SetMaxAge(foxptr[i + 1].GetMaxAge());
+	}
+
+	delete[] foxptr;
 	foxptr = temp;
 	fox_size--;
 }
-
 void Environment::DelRabbit(int index) {
 	if (rabbitptr == nullptr)return;
 	if (rabbit_size == 1) {
@@ -113,14 +119,20 @@ void Environment::DelRabbit(int index) {
 
 	Rabbit* temp = new Rabbit[rabbit_size - 1];
 
-	for (int i = 0, j = 0; j < rabbit_size; i++, j++)
+	for (int i = 0; i < index; i++)
 	{
-		if (i == index && j!= rabbit_size)
-			j++;
-
-		temp[i].SetAge(rabbitptr[j].GetAge());
+		temp[i].SetAge(rabbitptr[i].GetAge());
 		temp[i].SetMaxAge(rabbitptr[i].GetMaxAge());
+	}
 
+	for (int i = index; i < rabbit_size - 1; ++i)
+	{
+		if (index == rabbit_size) {
+			temp[i].SetAge(rabbitptr[i].GetAge());
+			temp[i].SetMaxAge(rabbitptr[i].GetMaxAge());
+		}
+		temp[i].SetAge(rabbitptr[i + 1].GetAge());
+		temp[i].SetMaxAge(rabbitptr[i + 1].GetMaxAge());
 	}
 	delete[]rabbitptr;
 	rabbitptr = temp;
