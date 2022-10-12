@@ -2,7 +2,7 @@
 
 #include <iostream>
 using namespace std;
-Fox::Fox():Animal()
+Fox::Fox():Animal() //max age for foxes is a static value - 10
 {
 	max_age = 10;
 }

@@ -1,7 +1,7 @@
 #include "Rabbit.h"
 #include <iostream>
 using namespace std;
-Rabbit::Rabbit():Animal()
+Rabbit::Rabbit():Animal() //max age for rabbits is static value - 12
 {
 	max_age = 12;
 }

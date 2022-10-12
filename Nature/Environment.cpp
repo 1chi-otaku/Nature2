@@ -9,9 +9,9 @@ Environment::~Environment()
 	if (rabbitptr != nullptr) delete[] rabbitptr;
 }
 
-void Environment::Print() {
+void Environment::Print() { //Prints all the information about fox and rabbits pointers
 
-	if (fox_size == 0 && rabbit_size == 0) {
+	if (fox_size == 0 && rabbit_size == 0) {			//If fox size and rabbit size = 0, it means that there are no rabbit and fox objects in Env. class; prints creepy message.
 		cout << "They're all dead!" << endl;
 		return;
 	}
@@ -27,10 +27,10 @@ void Environment::Print() {
 	cout << endl << endl;
 }
 
-Environment::Environment(int foxsize, int rabbitsize, int grasss)
+Environment::Environment(int foxsize, int rabbitsize, int grasss)		
 {
 	fox_size = foxsize;
-	if (fox_size > 5)fox_size = 5;
+	if (fox_size > 5)fox_size = 5; //Checks if foxsize <= 5
 	rabbit_size = rabbitsize;
 	foxptr = new Fox[fox_size];
 	rabbitptr = new Rabbit[rabbit_size];
@@ -46,7 +46,7 @@ void Environment::Scene()
 	system("pause");
 	system("cls");
 
-	if (grass == 0 && (fox_size > 0 || rabbit_size > 0)) {
+	if (grass == 0 && (fox_size > 0 || rabbit_size > 0)) {				//If there is no grass and at least one object of rabbit or fox exist randomises grass 50/50
 		system("cls");
 		cout << "You just noticed that there is no grass in this desert area.." << endl;
 		cout << "Divine forces are trying to make it rain!.." << endl;
@@ -99,13 +99,13 @@ void Environment::Scene()
 	system("pause");
 	system("cls");
 
-	if (fox_size <= 0 && rabbit_size <= 0 ) {
+	if (fox_size <= 0 && rabbit_size <= 0 ) {			//If there are no fox and rabbit objects
 		cout << "....." << endl;
 		cout << "It seems, there is no one here." << endl;
 		if (grass > 0) cout << grass << " units of grass drained over time.." << endl;
 		else cout << "No foxes, no rabbits, no grass. You have created an absolute void. It's lonely here.. Congratulations!?" << endl;
 	}
-	else if (fox_size <= 0) {
+	else if (fox_size <= 0) {	//If there are no fox objects
 		cout << "This environment looks so peaceful for " << rabbit_size << " rabbit(s)! There are no foxes!" << endl;
 		if (grass > 0) {
 			cout << "Moreover, grass grows here and rabbits can eat it, obviously.." << endl;
@@ -130,14 +130,14 @@ void Environment::Scene()
 			DelRabbitTo(0);
 		}
 	}
-	else if (rabbit_size <= 0) {
+	else if (rabbit_size <= 0) { //If  there are no rabbits objects
 		cout << fox_size << " fox(es) out looking for food..." << endl;
 		cout << "But there are no rabbits!" << endl;
 		if (grass > 0) cout << "Fox(es) tried to eat the grass..\nThey didn't like it.." << endl;
 		DelFoxesTo(0);
 		cout << "The foxes have no choice but to starve to death.." << endl;
 	}
-	else if (rabbit_size > fox_size) {
+	else if (rabbit_size > fox_size) { // If foxes > rabbits
 		cout << fox_size << " fox(es) tried to attack " << rabbit_size << " rabbits!" << endl;
 		cout << "But there were more rabbits and they were able to scare away the fox(es)!" << endl;
 		cout << "The humiliated foxes have gone to another place.." << endl;
@@ -148,7 +148,7 @@ void Environment::Scene()
 				cout << "Each rabbit ate a blade of grass (" << grass << " grass left) and " << rabbit_size << " rabbit(s) lived happily ever after!" << endl;
 				cout << "And the foxes managed to migrate successfully! Happy End!" << endl;
 			}
-			else {
+			else { 
 				dead_rabbits = rabbit_size - grass;
 				cout << "Although the rabbits managed to drive the foxes away, there was not enough food for everyone.." << endl;
 				DelRabbitTo(grass);
@@ -156,7 +156,7 @@ void Environment::Scene()
 				cout << "All the foxes managed to migrate successfully!" << endl;
 			}
 		}
-		else {
+		else { 
 			cout << "They were able to defeat the foxes, but not the hunger. There was no grass and they soon died." << endl;
 			cout << "But the foxes managed to migrate successfully!" << endl;
 			while (rabbit_size != 0)
@@ -166,7 +166,7 @@ void Environment::Scene()
 		}
 
 	}
-	else if (fox_size >= rabbit_size) {
+	else if (fox_size >= rabbit_size) { //If rabbits >= foxes
 		cout << fox_size << " fox(es) out looking for food..." << endl;
 		cout << "and they found " << rabbit_size << " rabbits!" << endl;
 		if (fox_size == rabbit_size) {
@@ -186,7 +186,7 @@ void Environment::Scene()
 	Print();
 	cout << "\n\n\n\n";
 }
-void Environment::DelFox(int index) {
+void Environment::DelFox(int index) { //Deletes Fox element by index
 	if (foxptr == nullptr)return;
 	if (fox_size == 1) {
 		fox_size = 0;
@@ -216,7 +216,7 @@ void Environment::DelFox(int index) {
 	foxptr = temp;
 	fox_size--;
 }
-void Environment::DelRabbit(int index) {
+void Environment::DelRabbit(int index) {  //Deletes Rabbit element by index
 	if (rabbitptr == nullptr)return;
 	if (rabbit_size == 1) {
 		rabbit_size = 0;
@@ -248,14 +248,14 @@ void Environment::DelRabbit(int index) {
 	
 }
 
-void Environment::DelRabbitTo(int summ_of_rabbits_remain)
+void Environment::DelRabbitTo(int summ_of_rabbits_remain) //Deletes all the Fox elements until a respective value
 {
 	while (rabbit_size != summ_of_rabbits_remain)
 	{
 		DelRabbit(0);
 	}
 }
-void Environment::DelFoxesTo(int summ_of_foxes_remain)
+void Environment::DelFoxesTo(int summ_of_foxes_remain) //Deletes all the Rabbit elements until a respective value
 {
 	while (fox_size != summ_of_foxes_remain)
 	{

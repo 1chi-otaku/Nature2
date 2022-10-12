@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-Animal::Animal()
+Animal::Animal() // random age of animal
 {
 	age = rand() % (1 - 15) + 1;
 }
