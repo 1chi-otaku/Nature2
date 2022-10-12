@@ -9,7 +9,6 @@ using namespace std;
 
 
 int main() {
-
 	srand(time(NULL)); 
 	int fox_size, rabbit_size, grass;
 	cout << "Enter foxes (5 max): " << endl;

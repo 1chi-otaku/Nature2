@@ -8,6 +8,6 @@ public:
 	Animal(unsigned short age);
 	unsigned short GetAge();
 	void SetAge(unsigned short age);
-	virtual ~Animal();
+	virtual ~Animal() = 0;
 };
 
